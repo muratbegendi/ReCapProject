@@ -7,7 +7,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Business\Business.csproj" />
-    <ProjectReference Include="..\Console\Console.csproj" />
     <ProjectReference Include="..\DataAccess\DataAccess.csproj" />
     <ProjectReference Include="..\Entities\Entities.csproj" />
   </ItemGroup>
