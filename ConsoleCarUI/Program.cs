@@ -21,19 +21,37 @@ namespace ConsoleCarUI
         private static void BrandTest()
         {
             BrandManager brandManager = new BrandManager(new EfBranDal());
-            foreach (var brand in brandManager.GetAll())
+            var result = brandManager.GetAll();
+            if (result.Success == true)
             {
-                Console.WriteLine(brand.BrandName);
+                foreach (var brand in result.Data)
+                {
+                    Console.WriteLine(brand.BrandName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
         }
 
         private static void CarTest()
         {
             CarManager carManager = new CarManager(new EfCarDal());
-            foreach (var car in carManager.GetCarDetails())
+            var result = carManager.GetCarDetails();
+            if (result.Success == true)
             {
-                Console.WriteLine("Model Year:" + car.ModelYear + "- " + "Description: " + car.Description + "- " + "Daily price:" + car.DailyPrice + "/" + "- " + car.BrandName + "/" + "- " +  car.ColorName);
+                foreach (var car in result.Data)
+                {
+                    Console.WriteLine("Model Year:" + car.ModelYear + "- " + "Description: " + car.Description + "- " + "Daily price:" + car.DailyPrice + "/" + "- " + car.BrandName + "/" + "- " + car.ColorName);
+                }
             }
+            else
+            {
+                Console.WriteLine(result.Message);
+            }
+
         }
     }
 }
