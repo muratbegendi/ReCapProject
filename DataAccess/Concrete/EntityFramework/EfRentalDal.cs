@@ -10,7 +10,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-   public class EfRentalDal : EfEntityRepositoryBase<Rental, RentACarDBContext>, IRentalDal
+    public class EfRentalDal : EfEntityRepositoryBase<Rental, RentACarDBContext>, IRentalDal
     {
         public List<RentalDetailDto> GetRentalDetails(Expression<Func<Rental, bool>> filter = null)
         {
@@ -41,4 +41,5 @@ namespace DataAccess.Concrete.EntityFramework
 
             }
         }
+    }
 }
