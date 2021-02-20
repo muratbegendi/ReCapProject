@@ -43,6 +43,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("getcarsbycolorid")]
         public IActionResult GetCarsByColorId(int id)
         {
@@ -53,6 +54,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("getcardetails")]
         public IActionResult GetCarDetails()
         {
@@ -63,6 +65,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpGet("getbydailyprice")]
         public IActionResult GetByDailyPrice(decimal min, decimal max)
         {
@@ -84,6 +87,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpPost("update")]
         public IActionResult Update(Car car)
         {
@@ -94,6 +98,7 @@ namespace WebAPI.Controllers
             }
             return BadRequest(result);
         }
+
         [HttpPost("delete")]
         public IActionResult Delete(Car car)
         {

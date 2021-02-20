@@ -1,9 +1,12 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstarct;
 using Entities.Concrete;
 using Entities.DTOs;
+using FluentValidation;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -13,18 +16,16 @@ namespace Business.Concrete
     public class CarManager : ICarService
     {
         ICarDal _carDal;
-
         public CarManager(ICarDal carDal)
         {
             _carDal = carDal;
         }
 
+
         public IResult Add(Car car)
         {
-            if (car.Description.Length < 2 && car.DailyPrice < 0)
-            {
-                return new ErrorResult(Messages.CarAddedInvalid);
-            }
+            ValidationTool.Validate(new CarValidator(), car);
+           
             _carDal.Add(car);
 
             return new SuccessResult(Messages.CarAdded);
@@ -38,7 +39,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Car>> GetAll()
         {
-            if (DateTime.Now.Hour == 10)
+            if (DateTime.Now.Hour == 1)
             {
                 return new ErrorDataResult<List<Car>>(Messages.MaintenanceTime);
             }

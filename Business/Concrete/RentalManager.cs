@@ -1,5 +1,7 @@
 ﻿using Business.Abstract;
 using Business.Constants;
+using Business.ValidationRules.FluentValidation;
+using Core.CrossCuttingConcerns.Validation;
 using Core.Utilities.Results;
 using DataAccess.Abstarct;
 using Entities.Concrete;
@@ -22,13 +24,10 @@ namespace Business.Concrete
 
         public IResult Add(Rental rental)
         {
-            var result = CheckReturnDate(rental.CarId);
-            if (!result.Success)
-            {
-                return new ErrorResult(result.Message);
-            }
+            ValidationTool.Validate(new RentalValidation(), rental);
+
             _rentalDal.Add(rental);
-            return new SuccessResult(result.Message);
+            return new SuccessResult(Messages.RentalAdded);
         }
 
         public IResult CheckReturnDate(int carId)
